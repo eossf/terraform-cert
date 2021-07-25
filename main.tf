@@ -17,6 +17,7 @@ provider "docker" {
 resource "random_string" "random" {
   length = 4
   special = false
+  count = 2
 }
 
 # Create a docker image resource
@@ -32,11 +33,11 @@ resource "docker_image" "nodered" {
 
 # Create a docker container resource
 resource "docker_container" "nodered" {
-  name    = join("-", ["nodered", random_string.random.result])
+  count = 2
+  name    = join("-", ["nodered", random_string.random[count.index].result])
   image   = docker_image.nodered.latest
-
   ports {
-    external = 1880
+    # external = 1880 + random_string.random.index
     internal = 1880
   }
 }
@@ -52,11 +53,11 @@ resource "docker_container" "nginx" {
 }
 
 output "IP-Address" {
-  value = join(":", [docker_container.nodered.ip_address, docker_container.nodered.ports[0].internal])
+  value = [for i in docker_container.nodered[*]: join(":", [i.ip_address,i.ports[0].internal])]
   description = "The IP address:port of the container"
 }
 
 output "container-name" {
-  value = docker_container.nodered.name
+  value = docker_container.nodered[*].name
   description = "The name of the container"
 }
