@@ -35,6 +35,7 @@ resource "docker_container" "nodered" {
 }
 
 # resource imported
+# t import docker_container.nodered2 920f46169c8a9d6be0fb40b291330bac4b2584312f3dcd0ce043ad11a5eae353
 resource "docker_container" "nodered2" {
   name    = "nodered-ZH4i"
   image   = docker_image.nodered.latest
