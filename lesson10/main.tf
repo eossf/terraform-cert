@@ -17,9 +17,8 @@ variable "internal_port" {
   default = [1880, 1881, 1882, 1883]
 }
 
-variable "container_count" {
-  type = number
-  default = 4
+locals {
+  container_count = length(var.internal_port)
 }
 
 # Configure the docker provider
@@ -29,7 +28,7 @@ provider "docker" {
 resource "random_string" "random" {
   length = 4
   special = false
-  count = var.container_count
+  count = local.container_count
 }
 
 resource "docker_image" "nodered" {
@@ -39,7 +38,7 @@ resource "docker_image" "nodered" {
 
 # Create a docker container resource
 resource "docker_container" "nodered" {
-  count = var.container_count
+  count = local.container_count
   name    = join("-", ["nodered", random_string.random[count.index].result])
   image   = docker_image.nodered.latest
   ports {
@@ -51,3 +50,4 @@ output "container-name" {
   value = docker_container.nodered[*].name
   description = "The name of the container"
 }
+
