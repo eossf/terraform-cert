@@ -17,7 +17,7 @@ provider "docker" {
 resource "random_string" "random" {
   length = 4
   special = false
-  count = var.container_count
+  count = local.container_count
 }
 
 resource "docker_image" "nodered" {
@@ -27,11 +27,12 @@ resource "docker_image" "nodered" {
 
 # Create a docker container resource
 resource "docker_container" "nodered" {
-  count = var.container_count
+  count = local.container_count
   name    = join("-", ["nodered", random_string.random[count.index].result])
   image   = docker_image.nodered.latest
   ports {
-    internal = min(var.internal_port[count.index],1880)
+    internal = 1880
+    external = lookup(var.external_port,var.env)[count.index]
   }
 }
 

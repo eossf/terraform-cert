@@ -13,12 +13,14 @@ variable "image" {
   }
 }
 
-variable "internal_port" {
-  type = list
-  default = [1880]
+variable "external_port" {
+  type = map
+  validation {
+    condition = min(var.external_port["dev"]...) >= 1880 && max(var.external_port["dev"]...) <= 1890
+    error_message = "The port is to be in the range of 1880-1890."
+  }
 }
 
-variable "container_count" {
-  type = number
-  default = 1
+locals {
+  container_count = length(lookup(var.external_port,var.env))
 }
