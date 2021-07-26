@@ -1,4 +1,4 @@
-# Variables, validation
+# Lookup
 
 ## common steps before starting
 
@@ -13,8 +13,7 @@ cp -f model main.tf
 ````
 
 ## steps to do
-- add a condition to internal_port
-- add a file outputs.tf that outputs "container-name" and contains variables
+- 
 
 ## Outcome
-just do a t plan or apply to verify
+just do a plan or apply to verify 

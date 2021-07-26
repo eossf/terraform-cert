@@ -12,11 +12,11 @@ t init
 cp -f model main.tf
 ````
 
-## remove manually resource
+## steps to do
 - change the internal_port to list type, set two elements in the array: 1880, 1881 ...
 - set value container_count to : 4
 - add a max function with 1880
 - add a min , still 1880
 
 ## Outcome
-just do a plan to verify 
+just do a plan or apply to verify 

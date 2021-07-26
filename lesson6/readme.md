@@ -12,9 +12,9 @@ t init
 cp -f model main.tf
 ````
 
-## remove manually resource
+## steps to do
 - add 2 variables for count and external port
 
 ## Outcome
-just do a plan to verify
+just do a plan or apply to verify
 

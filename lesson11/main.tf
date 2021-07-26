@@ -13,8 +13,8 @@ terraform {
 # variable must be input or set when running terraform
 # could be export TF_VAR_internal_port=
 variable "internal_port" {
-  type = number
-  default 1880
+  type = list
+  default = [1880]
 }
 
 variable "container_count" {
@@ -43,16 +43,11 @@ resource "docker_container" "nodered" {
   name    = join("-", ["nodered", random_string.random[count.index].result])
   image   = docker_image.nodered.latest
   ports {
-    internal = var.internal_port
+    internal = min(var.internal_port[count.index],1880)
   }
 }
 
 output "container-name" {
   value = docker_container.nodered[*].name
   description = "The name of the container"
-}
-
-output "port" {
-  value = var.internal_port
-  description = "The port of the container"
 }
