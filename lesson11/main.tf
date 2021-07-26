@@ -10,18 +10,6 @@ terraform {
   }
 }
 
-# variable must be input or set when running terraform
-# could be export TF_VAR_internal_port=
-variable "internal_port" {
-  type = list
-  default = [1880]
-}
-
-variable "container_count" {
-  type = number
-  default = 1
-}
-
 # Configure the docker provider
 provider "docker" {
 }
@@ -33,7 +21,7 @@ resource "random_string" "random" {
 }
 
 resource "docker_image" "nodered" {
-  name         = "nodered/node-red:latest"
+  name         = lookup(var.image,var.env)
   keep_locally = true
 }
 

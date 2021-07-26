@@ -10,6 +10,7 @@ alias ll='ls -ltrhA'
 t destroy
 t init
 cp -f model main.tf
+cp -f variables variables.tf
 ````
 
 ## steps to do
