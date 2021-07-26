@@ -14,6 +14,7 @@ terraform {
 # could be export TF_VAR_internal_port=
 variable "internal_port" {
   type = number
+#  sensitive = true
 }
 
 variable "container_count" {
@@ -49,4 +50,10 @@ resource "docker_container" "nodered" {
 output "container-name" {
   value = docker_container.nodered[*].name
   description = "The name of the container"
+}
+
+output "port" {
+  value = var.internal_port
+#  sensitive = true
+  description = "The port of the container"
 }
