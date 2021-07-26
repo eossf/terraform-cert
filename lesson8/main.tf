@@ -10,6 +10,17 @@ terraform {
   }
 }
 
+# variable must be input or set when running terraform
+# could be export TF_VAR_internal_port=
+variable "internal_port" {
+  type = number
+}
+
+variable "container_count" {
+  type = number
+  default = 1
+}
+
 # Configure the docker provider
 provider "docker" {
 }
@@ -33,22 +44,6 @@ resource "docker_container" "nodered" {
   ports {
     internal = var.internal_port
   }
-}
-
-# variable must be input or set when running terraform
-# could be export TF_VAR_internal_port=
-variable "internal_port" {
-  type = number
-
-  validation {
-    condition = var.internal_port == 1880
-    error_message = "The Port internal is fixed to 1880."
-  }
-}
-
-variable "container_count" {
-  type = number
-  default = 1
 }
 
 output "container-name" {

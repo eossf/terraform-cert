@@ -13,7 +13,12 @@ cp -f model main.tf
 ````
 
 ## remove manually resource
-- add variable in tfvars
+- add variable in tfvars file (terraform.tfvars is automatically read by default)
+- add a second tfvars file and add a different port : 1900 (remove the condidion == 1880)
 
 ## Outcome
-just do a "t plan" to verify
+```bash
+# to select the properfile do 
+t plan -var-file=second.tfvars
+
+````
