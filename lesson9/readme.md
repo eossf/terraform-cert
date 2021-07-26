@@ -16,6 +16,7 @@ cp -f model main.tf
 - locally in terraform, noderedvol/ 
 - modify the container nodered, link container path /data the hostpath (volume created above)
   (host_path MUST be FQDN i.e. /home/...)
+- add a dynamic path, get path.cwd from terraform (use string interpolation)
 
 ## Outcome
 the volume contains lib/ and node_modules + js and json files
