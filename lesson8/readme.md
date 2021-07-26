@@ -1,4 +1,4 @@
-# Variables
+# Variables external injection
 
 ## common steps before starting
 
@@ -13,12 +13,7 @@ cp -f model main.tf
 ````
 
 ## remove manually resource
-- add 2 variables for count and external port
-
-```bash
-
-````
+- add variable in tfvars
 
 ## Outcome
-just do a plan to verify
-
+just do a "t plan" to verify

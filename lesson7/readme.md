@@ -2,6 +2,8 @@
 
 ## common steps before starting
 
+Model file is replacing the main.tf file for starting the exercise without the solution
+
 ```bash
 alias t='terraform'
 alias ll='ls -ltrhA'
