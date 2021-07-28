@@ -1,0 +1,19 @@
+- name: Launch docker containers with Ansible
+  hosts: localhost
+  connection: local
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: Creation of Docker Containers
+      docker_container:
+        name: nodered-{{ item }}
+        image: "nodered/node-red:latest-minimal"
+        state: present
+      with_sequence: count=3
+
+    - name: Starting Docker Containers
+      docker_container:
+        name: nodered-{{ item }}
+        image: web_new
+        state: started
+      with_sequence: count=3
