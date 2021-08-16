@@ -9,7 +9,7 @@ terraform {
 
 resource "null_resource" "noderedvol" {
   provisioner "local-exec" {
-    command = "sleep 10 && mkdir noderedvol/ || true && sudo chown -R 1000:1000 noderedvol/ "
+    command = "sleep 2 && mkdir noderedvol/ || true && sudo chown -R 1000:1000 noderedvol/ "
   }
 }
 resource "random_string" "random" {
@@ -30,6 +30,7 @@ module "container" {
   name_in  = join("-", ["nodered", random_string.random[count.index].result])
   image_in = module.image.image_out
   internal_port_in = var.internal_port
+  external_port_in = var.external_port[count.index]
   container_path_in = "/data"
   container_host_path_in = "${path.cwd}/noderedvol/"
 }

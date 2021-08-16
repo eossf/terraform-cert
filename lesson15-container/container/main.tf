@@ -4,6 +4,7 @@ resource "docker_container" "nodered" {
   image   = var.image_in
   ports {
     internal = var.internal_port_in
+    external = var.external_port_in
   }
   volumes {
     container_path = var.container_host_path_in
