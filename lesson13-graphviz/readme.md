@@ -1,4 +1,4 @@
-# Vizualie graphical dependencies
+# Vizualize graphical dependencies
 
 ## install graphviz
 
