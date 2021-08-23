@@ -7,7 +7,7 @@ s3:PutObject on arn:aws:s3:::s3bucket/path/to/tfstate
 
 ## security 
 terraform checks by default ~/.aws/credentials for accessing S3 
+terraform plan -var access_key="xxx" -var secret_key="xxxx"
 
 ## container module
 ## image module
-

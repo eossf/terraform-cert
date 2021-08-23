@@ -8,6 +8,13 @@ resource "docker_container" "this" {
   }
   volumes {
     container_path = var.container_path_in
-    volume_name = "${var.name_in}-volume"
-  } 
+    volume_name = docker_volume.this.name
+  }
+}
+
+resource "docker_volume" "this" {
+  name = "${var.name_in}-x-volume"
+  lifecycle {
+    prevent_destroy = true
+  }
 }
