@@ -15,7 +15,7 @@ resource "docker_image" "nodered" {
 }
 
 resource "docker_container" "nodered" {
-  count = 2
+  count = 1
   name    = "nodered-${count.index}"
   image   = docker_image.nodered.latest
   ports {

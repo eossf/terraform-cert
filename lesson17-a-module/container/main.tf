@@ -15,6 +15,6 @@ resource "docker_container" "this" {
 resource "docker_volume" "this" {
   name = "${var.name_in}-x-volume"
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }
