@@ -5,12 +5,12 @@ resource "random_string" "random" {
 }
 
 module "image" {
-  source = "../lesson17-add-mongodb/image"
+  source = "../lesson17-a-module/image"
   image_in = var.image_name
 }
 
 module "container" {
-  source = "../lesson17-add-mongodb/container"
+  source = "../lesson17-a-module/container"
   count = var.container_count
   name_in  = join("-", ["nodered-x", random_string.random[count.index].result])
   image_in = var.image_name
