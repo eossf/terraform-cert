@@ -11,11 +11,11 @@ image_name = {
 internal_port = 8080
 external_port = {
   nginx = {
-    dev  = [8081]
-    prod = [8082]
+    dev  = [8081, 8082]
+    prod = [8081, 8082]
   }
   influxdb = {
-    dev  = [1081]
-    prod = [1082]
+    dev  = [1081, 1082]
+    prod = [1081, 1082]
   }
 }
