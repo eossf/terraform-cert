@@ -32,8 +32,8 @@ module "image" {
 
 module "container" {
   source            = "./container"
+  count_in          = each.value.container_count
   for_each          = local.deployment
-  count_in          = 
   name_in           = join("-", [each.key, terraform.workspace, random_string.random[each.key].result])
   image_in          = module.image[each.key].image_out
   internal_port_in  = each.value.internal_port
