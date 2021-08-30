@@ -1,6 +1,5 @@
 # complete module docker 
 
-create 2 workspaces: dev and prod
 create a project
 which calls module /container
 container module calls a sub-module /image
