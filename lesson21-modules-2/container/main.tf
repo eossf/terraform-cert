@@ -1,8 +1,3 @@
-module "image" {
-  source   = "../image"
-  image_in = var.image_in
-}
-
 resource "random_string" "random" {
   length  = 4
   special = false
