@@ -1,5 +1,15 @@
-variable "image_name" {}
-variable "internal_port" {}
-variable "external_port" {}
-variable "access_key" {}
-variable "secret_key" {}
+variable "tss_username" {
+  type = string
+}
+
+variable "tss_password" {
+  type = string
+}
+
+variable "tss_server_url" {
+  type = string
+}
+
+variable "tss_secret_id" {
+  type = string
+}

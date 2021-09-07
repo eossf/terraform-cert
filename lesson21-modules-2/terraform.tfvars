@@ -1,21 +1,4 @@
-image_name = {
-  influxdb = {
-    dev  = "quay.io/influxdb/influxdb:v2.0.0"
-    prod = "quay.io/influxdb/influxdb:v2.0.0"
-  }
-  nginx = {
-    dev  = "nginx:latest"
-    prod = "nginx:latest"
-  }
-}
-internal_port = 8080
-external_port = {
-  nginx = {
-    dev  = [8081, 8082]
-    prod = [8081, 8082]
-  }
-  influxdb = {
-    dev  = [1081, 1082]
-    prod = [1081, 1082]
-  }
-}
+tss_username   = "stephane.metairie@sokube.ch"
+tss_password   = "9dvOJ21YKL+-"
+tss_secret_id  = "1"
+tss_server_url = "https://metairie.secretservercloud.eu/SecretServer"
