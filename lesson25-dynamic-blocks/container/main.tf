@@ -26,19 +26,6 @@ resource "docker_container" "this" {
       volume_name    = docker_volume.this[volumes.key].name
     }
   }
-  provisioner "local-exec" {
-    when       = create
-    command    = "mkdir ${path.cwd}/../BACKUP/"
-    on_failure = continue
-  }
-  provisioner "local-exec" {
-    when    = create
-    command = "touch ${path.cwd}/../BACKUP/container.txt"
-  }
-  provisioner "local-exec" {
-    when    = create
-    command = "echo ${self.name} ${self.ip_address}:${join("", [for p in self.ports[*]["external"] : p])} >> ${path.cwd}/../BACKUP/container.txt"
-  }
 }
 
 resource "docker_volume" "this" {
@@ -46,10 +33,5 @@ resource "docker_volume" "this" {
   name  = "${var.name_in}-${count.index}-volume"
   lifecycle {
     prevent_destroy = false
-  }
-  provisioner "local-exec" {
-    when       = destroy
-    command    = "sudo tar -czvf ${path.cwd}/../BACKUP/${self.name}.tar.gz ${self.mountpoint}/"
-    on_failure = fail
   }
 }
