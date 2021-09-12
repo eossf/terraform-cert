@@ -1,5 +1,5 @@
 module "container" {
-  source           = "./container"
+  source           = "git@github.com:eossf/tf-docker-container.git?ref=v1.2"
   for_each         = local.deployment
   count_in         = each.value.container_count
   name_in          = each.key
